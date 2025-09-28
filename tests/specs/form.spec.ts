@@ -79,7 +79,7 @@ test.describe('Fade Systems QA Test Form', () => {
       await formActions.verifyFieldError('name', 'Name is required.');
       await formActions.verifyFieldError('country', 'Country is required.');
     });
-    test('should shiw a validation error for a missing name', async () => {
+    test('should show a validation error for a missing name', async () => {
 
     });
 
