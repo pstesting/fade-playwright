@@ -2,7 +2,6 @@
   "name": "fade-playwright",
   "version": "1.0.0",
   "description": "Playwright TypeScript test framework for Fade Systems QA test page",
-  "main": "index.js",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
@@ -20,8 +19,7 @@
     "testing",
     "e2e"
   ],
-  "author": "Fade Systems QA",
-  "license": "MIT",
+  "author": "ps-testing",
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "@types/node": "^20.0.0",
