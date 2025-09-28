@@ -48,6 +48,9 @@ test.describe('Fade Systems QA Test Form', () => {
 
       // Verify successful submission
       await formActions.verifyFormSuccess();
+
+      //Verify the registration is in the table
+      await formActions.verifyRegistrationResult(validData);
     });
 
     test('should submit form with minimal required data', async () => {
@@ -65,6 +68,33 @@ test.describe('Fade Systems QA Test Form', () => {
 
       // Verify successful submission
       await formActions.verifyFormSuccess();
+
+      //Verify the registration is in the table
+      await formActions.verifyRegistrationResult(minimalData);
+    });
+
+    test('should delete a registration from the table', async () => {
+      const validData = {
+        name: 'John Dobbs',
+        email: 'test@ps-testing.co.uk',
+        country: 'Algeria',
+      };
+
+      // Fill the form with valid data
+      await formActions.fillCompleteForm(validData);
+
+      // Submit the form
+      await formActions.submitForm();
+
+      // Verify successful submission
+      await formActions.verifyFormSuccess();
+
+      //Verify the registration is in the table
+      await formActions.verifyRegistrationResult(validData);
+
+      // Delete the registration
+      await formActions.deleteRegistration(validData.name);
+
     });
 
   });
@@ -105,6 +135,7 @@ test.describe('Fade Systems QA Test Form', () => {
 
     });
   });
+
 
   test.describe('Form Accessibility and UX', () => {
     test('should be keyboard navigable', async () => {
