@@ -166,4 +166,41 @@ export class FormActions {
       await expect(this.locators.successMessage).toContainText(expectedMessage);
     }
   }
+  /**
+   * Verify Registration Result
+   */
+  async verifyRegistrationResult(formData: {
+    name: string;
+    email?: string;
+    country: string;
+  }): Promise<void> {
+    await expect(this.locators.registrationResultHeader).toBeVisible({ timeout: 10000 });
+    await expect(this.locators.nameColumnHeader).toBeVisible({ timeout: 10000 });
+    await expect(this.locators.emailColumnHeader).toBeVisible({ timeout: 10000 });
+    await expect(this.locators.countryColumnHeader).toBeVisible({ timeout: 10000 });
+
+    await expect(this.locators.registrationDeleteButton).toBeVisible({ timeout: 10000 }); //Wiil fail as button is missing
+
+    // Verify the submitted data appears in the registration table
+
+    await expect(this.locators.registrationTableRows.getByText(formData.name)).toBeVisible({ timeout: 10000 });
+
+    if (formData.email) {
+      await expect(this.locators.registrationTableRows.getByText(formData.email)).toBeVisible({ timeout: 10000 });
+    }
+
+    await expect(this.locators.registrationTableRows.getByText(formData.country)).toBeVisible({ timeout: 10000 });
+  }
+
+async deleteRegistration(name: string): Promise<void> {
+  const row = this.locators.registrationTableRows.filter({ hasText: name });
+  const deleteButton = row.getByRole('button', { name: 'Delete' });
+
+  await expect(deleteButton).toBeVisible({ timeout: 5000 });
+  await deleteButton.click();
+
+  // Verify the row is removed
+  await expect(row).not.toBeVisible({ timeout: 5000 });
+}
+
 }

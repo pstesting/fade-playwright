@@ -63,4 +63,28 @@ export class FormLocators {
     return this.page.getByText('Your registration has been saved.');
   }
 
+  // Registration result locators
+  get registrationResultHeader() : Locator {
+    return this.page.getByRole('heading', { name: 'Registrations' })
+  }
+
+  get nameColumnHeader(): Locator {
+    return this.page.getByRole('columnheader', { name: 'Name' });
+  }
+
+  get emailColumnHeader(): Locator {
+    return this.page.getByRole('columnheader', { name: 'Email' });
+  }
+
+  get countryColumnHeader(): Locator {
+    return this.page.getByRole('columnheader', { name: 'Country' });
+  }
+
+  get registrationTableRows(): Locator {
+    return this.page.locator('table tbody tr');
+  }
+
+  get registrationDeleteButton(): Locator {
+    return this.page.getByRole('button', { name: 'Delete' });
+  }
 }
